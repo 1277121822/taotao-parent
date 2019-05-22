@@ -1,8 +1,9 @@
 package com.djb.taotao.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class TbItemDesc {
+public class TbItemDesc implements Serializable {
     private Long itemId;
 
     private Date created;
@@ -40,6 +41,6 @@ public class TbItemDesc {
     }
 
     public void setItemDesc(String itemDesc) {
-        this.itemDesc = itemDesc == null ? null : itemDesc.trim();
+        this.itemDesc = (itemDesc == null ? null : itemDesc.trim());
     }
 }

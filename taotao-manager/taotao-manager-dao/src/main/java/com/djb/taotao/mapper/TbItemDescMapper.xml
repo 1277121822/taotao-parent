@@ -5,9 +5,10 @@
     <result column="item_id" property="itemId" jdbcType="BIGINT" />
     <result column="created" property="created" jdbcType="TIMESTAMP" />
     <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+      <result column="item_desc" property="itemDesc" jdbcType="LONGVARCHAR"/>
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.djb.taotao.pojo.TbItemDesc" extends="BaseResultMap" >
-    <result column="item_desc" property="itemDesc" jdbcType="LONGVARCHAR" />
+    <result column="item_desc" property="itemDesc" jdbcType="LONGVARCHAR"/>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    item_id, created, updated
+    item_id, created, updated,item_desc
   </sql>
   <sql id="Blob_Column_List" >
     item_desc
@@ -103,6 +104,16 @@
       order by ${orderByClause}
     </if>
   </select>
+
+<!--    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from tb_item_desc
+        where item_id = #{itemId,jdbcType=BIGINT}
+    </select>-->
+
   <delete id="deleteByExample" parameterType="com.djb.taotao.pojo.TbItemDescExample" >
     delete from tb_item_desc
     <if test="_parameter != null" >
@@ -110,9 +121,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.djb.taotao.pojo.TbItemDesc" >
-    insert into tb_item_desc (item_id, created, updated, 
+    insert into tb_item_desc (item_id, created, updated,
       item_desc)
-    values (#{itemId,jdbcType=BIGINT}, #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, 
+    values (#{itemId,jdbcType=BIGINT}, #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP},
       #{itemDesc,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.djb.taotao.pojo.TbItemDesc" >

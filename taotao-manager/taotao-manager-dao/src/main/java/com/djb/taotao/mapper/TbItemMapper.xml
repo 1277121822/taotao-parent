@@ -89,6 +89,16 @@
       order by ${orderByClause}
     </if>
   </select>
+
+<!--    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from tb_item_desc
+        where item_id = #{itemId,jdbcType=BIGINT}
+    </select>-->
+
   <delete id="deleteByExample" parameterType="com.djb.taotao.pojo.TbItemExample" >
     delete from tb_item
     <if test="_parameter != null" >
@@ -96,13 +106,13 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.djb.taotao.pojo.TbItem" >
-    insert into tb_item (id, title, sell_point, 
-      price, num, barcode, 
-      image, cid, status, 
+    insert into tb_item (id, title, sell_point,
+      price, num, barcode,
+      image, cid, status,
       created, updated)
-    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{sellPoint,jdbcType=VARCHAR}, 
-      #{price,jdbcType=BIGINT}, #{num,jdbcType=INTEGER}, #{barcode,jdbcType=VARCHAR}, 
-      #{image,jdbcType=VARCHAR}, #{cid,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, 
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{sellPoint,jdbcType=VARCHAR},
+      #{price,jdbcType=BIGINT}, #{num,jdbcType=INTEGER}, #{barcode,jdbcType=VARCHAR},
+      #{image,jdbcType=VARCHAR}, #{cid,jdbcType=BIGINT}, #{status,jdbcType=TINYINT},
       #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.djb.taotao.pojo.TbItem" >
